@@ -11,7 +11,7 @@ const map = document.querySelector(".map");
 const camera = document.querySelector(".camera");
 const watch = document.querySelector(".watch");
 const bottle = document.querySelector(".bottle");
-const sanwich = document.querySelector(".sanwich");
+const sandwich = document.querySelector(".sandwich");
 const bag = document.querySelector(".bag");
 const radio = document.querySelector(".radio");
 const phone = document.querySelector(".phone");
@@ -20,15 +20,18 @@ const phone = document.querySelector(".phone");
 const itemListShown = document.querySelector(".itemList");
 const restartBtn = document.querySelector(".btn-restart");
 
-const itemList = [glasses, shoes, hat, bikini, towel, sunscreen, bagpack, medicine, passport, map, camera, watch, bottle, sanwich, bag, radio, phone];
+const itemList = [glasses, shoes, hat, bikini, towel, sunscreen, bagpack, medicine, passport, map, camera, watch, bottle, sandwich, bag, radio, phone];
+
+let newItems = [...itemList];
 
 const activeItems = [];
 
 const activateItems = function () {
-    for (let i = 0; i < itemList.length / 2; i++) {
-        let j = Math.floor(Math.random() * itemList.length);
-        itemList[j].classList.add("box-blue");
-        activeItems.push(itemList[j]);
+    for (let i = 0; i <= itemList.length / 2 - 1; i++) {
+        let currentItem = Math.floor(Math.random() * newItems.length);
+        newItems[currentItem].classList.add("box-blue");
+        activeItems.push(newItems[currentItem]);
+        newItems.splice(currentItem, 1);
     }
 }
 
@@ -50,7 +53,9 @@ const eraceItem = () => {
 
 activateItems();
 
-itemListShown.innerHTML = `<p>${activeItems}<p>`;
+activeItems.forEach(element => {
+    itemListShown.innerHTML += `<p>${element.id}</p>`;
+});
 
 eraceItem();
 

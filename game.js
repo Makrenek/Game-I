@@ -35,28 +35,35 @@ const activateItems = function () {
     }
 }
 
+activateItems();
+
+const printList = () => {
+    activeItems.forEach(element => {
+        itemListShown.innerHTML += `<p>${element.id}</p>`;
+    })
+};
+
+printList();
+
 const handleWin = () => {
     if (activeItems.length == 0) {
-        console.log("You win");
+        window.alert(`You won!
+        Your score is: 0`);
     }
 };
 
-const eraceItem = () => {
+const eraceItem = function () {
     activeItems.forEach(element => {
         element.addEventListener("click", function () {
             this.classList.add("erace");
-            activeItems.pop(this);
+            indexNum = activeItems.indexOf(this);
+            activeItems.splice(indexNum, 1);
+            itemListShown.innerHTML = "";
+            printList();
             handleWin();
         })
     })
 };
 
-activateItems();
-
-activeItems.forEach(element => {
-    itemListShown.innerHTML += `<p>${element.id}</p>`;
-});
-
 eraceItem();
-
-restartBtn.addEventListener("click", activateItems);
+           // handleLose(); - uzalezniony od czasu

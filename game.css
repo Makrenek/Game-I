@@ -73,44 +73,44 @@ font-size: 20px;
     border: #e67e22 solid 2px;
     border-radius: 8px;
     display: grid;
-    grid-template-columns: repeat(16, 1fr);
-    grid-template-rows:  repeat(16, 1fr); 
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows:  repeat(13, 1fr); 
 }
 
 .glasses{
-    grid-area: 4 / 4 / 5 / 5;
+    grid-area: 5 / 7 / 6 / 8;
 }
 
 .shoes{
-    grid-area: 10 / 10 / 11 / 11;
+    grid-area: 13 / 4 / 14 / 5;
 }
 
 .hat{
-    grid-area: 15 / 6 / 16 / 7;
-}
-
-.bikini{
-    grid-area: 12 / 11 / 13 / 12;
-}
-
-.towel{
     grid-area: 3 / 7 / 4 / 8;
 }
 
-.sunscreen{
-    grid-area: 14 / 14 / 15 / 15;
+.aid-kit{
+    grid-area: 12 / 13 / 13 / 14;
+}
+
+.compass{
+    grid-area: 7 / 4 / 8 / 5;
+}
+
+.flashlight{
+    grid-area: 7 / 10 / 8 / 11;
 }
 
 .bagpack{
-    grid-area: 7 / 6 / 8 / 7;
+    grid-area: 9 / 1 / 11 / 3;
 }
 
-.medicine{
-    grid-area: 16 / 8 / 17 / 9;
+.binoculars{
+    grid-area: 9 / 6 / 10 / 7;
 }
 
-.passport{
-    grid-area: 8 / 16 / 9 / 17;
+.wallet{
+    grid-area: 7 / 11 / 8 / 12;
 }
 
 .map{
@@ -122,38 +122,19 @@ font-size: 20px;
 }
 
 .watch{
-    grid-area: 2/13/3/14;
+    grid-area: 2/11/3/12;
 }
 
-.bottle{
-    grid-area: 13/3/14/4;
+.sunscreen{
+    grid-area: 7/2/8/3;
 }
 
-.sandwich {
-    grid-area: 3/2/4/3;
-}
-
-.bag {
-    grid-area: 12/6/13/7;
-}
-
-.radio{
-    grid-area: 2/3/3/4;
+.lighter {
+    grid-area: 7/3/8/4;
 }
 
 .phone{
-    grid-area: 14/9/15/10;
-}
-
-
-.box-orange{
-    height: 25px;
-    width: 25px;
-    background-color: #e67e22;
-}
-
-.box-blue{
-    background-color: blue;
+    grid-area: 11/9/12/10;
 }
 
 .erace {

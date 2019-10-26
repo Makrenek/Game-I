@@ -13,13 +13,13 @@ class Item {
         })
     }
     activate() {
-        this.element.classList.add("box-blue");
         activeItems.push(this);
     }
     pickUp() {
-        this.element.classList.add("erace");
-        activeItems.splice(activeItems.indexOf(this), 1);
-
+        if (activeItems.indexOf(this) > -1) {
+            this.element.classList.add("erace");
+            activeItems.splice(activeItems.indexOf(this), 1);
+        }
     }
     getName() {
         return this.name;
@@ -28,7 +28,7 @@ class Item {
 
 const itemListShown = document.querySelector(".itemList");
 
-const itemList = [new Item("glasses"), new Item("shoes"), new Item("hat"), new Item("bikini"), new Item("towel"), new Item("sunscreen"), new Item("bagpack"), new Item("medicine")]
+const itemList = [new Item("glasses"), new Item("shoes"), new Item("hat"), new Item("aid-kit"), new Item("compass"), new Item("flashlight"), new Item("bagpack"), new Item("binoculars"), new Item("wallet"), new Item("map"), new Item("camera"), new Item("watch"), new Item("sunscreen"), new Item("lighter"), new Item("phone")]
 
 let newItems = [...itemList];
 

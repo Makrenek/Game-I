@@ -9,16 +9,18 @@ class Item {
             pickUp();
             itemListShown.innerHTML = "";
             printList();
-            setTimeout(handleWin, 500);
+            handleWin();
         })
     }
     activate() {
         activeItems.push(this);
     }
     pickUp() {
-        if (activeItems.indexOf(this) > -1) {
-            this.element.classList.add("erace");
-            activeItems.splice(activeItems.indexOf(this), 1);
+        if (play) {
+            if (activeItems.indexOf(this) > -1) {
+                this.element.classList.add("erace");
+                activeItems.splice(activeItems.indexOf(this), 1);
+            }
         }
     }
     getName() {
@@ -28,7 +30,10 @@ class Item {
 
 const itemListShown = document.querySelector(".itemList");
 const time = document.getElementById("time");
+const youWon = document.querySelector(".youWon");
+const youLose = document.querySelector(".youLose");
 let score;
+let play = true;
 
 const itemList = [new Item("glasses"), new Item("shoes"), new Item("hat"), new Item("aid-kit"), new Item("compass"), new Item("flashlight"), new Item("bagpack"), new Item("binoculars"), new Item("wallet"), new Item("map"), new Item("camera"), new Item("watch"), new Item("sunscreen"), new Item("lighter"), new Item("phone")]
 
@@ -54,14 +59,16 @@ printList();
 
 const handleWin = () => {
     if (activeItems.length == 0) {
-        window.alert(`You won!
-        Your score is: ${score + 100}`);
         localStorage.setItem("myScore", score);
+        youWon.style.visibility = "visible";
     }
+    document.querySelector(".score").innerText = `${score + 100}`;
 };
 
 const handleLose = () => {
-    alert("Lose");
+    play = false;
+    youLose.style.visibility = "visible";
+
 }
 
 

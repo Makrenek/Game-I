@@ -164,6 +164,21 @@ text-align: center;
   background-color: #bf6516;
 }
 
+.end{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 200px;
+    z-index: 99;
+    visibility: hidden;
+    background-color: rgb(204,204,204, 0.9);
+    border: #e67e22 solid 2px;
+    border-radius: 15px;
+    padding: 25px;
+    width: 400px;
+}
+
 .footer {
     background-color: #e67e22;
     color: wheat;

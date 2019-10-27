@@ -9,7 +9,7 @@ class Item {
             pickUp();
             itemListShown.innerHTML = "";
             printList();
-            handleWin();
+            setTimeout(handleWin, 500);
         })
     }
     activate() {
@@ -27,6 +27,8 @@ class Item {
 };
 
 const itemListShown = document.querySelector(".itemList");
+const time = document.getElementById("time");
+let score;
 
 const itemList = [new Item("glasses"), new Item("shoes"), new Item("hat"), new Item("aid-kit"), new Item("compass"), new Item("flashlight"), new Item("bagpack"), new Item("binoculars"), new Item("wallet"), new Item("map"), new Item("camera"), new Item("watch"), new Item("sunscreen"), new Item("lighter"), new Item("phone")]
 
@@ -40,7 +42,7 @@ const activeItems = [];
         newItems[currentItem].activate();
         newItems.splice(currentItem, 1);
     }
-})()
+})();
 
 const printList = () => {
     activeItems.forEach(item => {
@@ -53,6 +55,34 @@ printList();
 const handleWin = () => {
     if (activeItems.length == 0) {
         window.alert(`You won!
-        Your score is: 0`);
+        Your score is: ${score + 100}`);
+        localStorage.setItem("myScore", score);
     }
 };
+
+const handleLose = () => {
+    alert("Lose");
+}
+
+
+function gameRoomTimer(callback, value) {
+    value = value || 30;
+    let timer = setInterval(function () {
+        callback(value);
+        if (value-- <= 0) {
+            setTimeout(handleLose, 500);
+            clearInterval(timer);
+        }
+        if (activeItems.length == 0) {
+            clearInterval(timer);
+        }
+    }, 1000);
+}
+new gameRoomTimer(function (value) {
+    let timerMsg = "00:" + (value >= 10 ? value : "0" + value);
+    time.textContent = timerMsg;
+    score = value;
+});
+
+
+

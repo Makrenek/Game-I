@@ -10,6 +10,7 @@ class Item {
             itemListShown.innerHTML = "";
             printList();
             handleWin();
+            wrongItem();
         })
     }
     activate() {
@@ -33,6 +34,7 @@ const time = document.getElementById("time");
 const youWon = document.querySelector(".youWon");
 const youLose = document.querySelector(".youLose");
 let score;
+let negativePoints = 0;
 let play = true;
 
 const itemList = [new Item("glasses"), new Item("shoes"), new Item("hat"), new Item("aid-kit"), new Item("compass"), new Item("flashlight"), new Item("bagpack"), new Item("binoculars"), new Item("wallet"), new Item("map"), new Item("camera"), new Item("watch"), new Item("sunscreen"), new Item("lighter"), new Item("phone")]
@@ -55,6 +57,14 @@ const printList = () => {
     })
 };
 
+const wrongItem = () => {
+    if (play) {
+        if ((activeItems.indexOf(this) == -1)) {
+            negativePoints -= 5;
+        }
+    }
+}
+
 printList();
 
 const handleWin = () => {
@@ -62,7 +72,7 @@ const handleWin = () => {
         localStorage.setItem("myScore", score);
         youWon.style.visibility = "visible";
     }
-    document.querySelector(".score").innerText = `${score + 100}`;
+    document.querySelector(".score").innerText = `${score + + negativePoints + 100}`;
 };
 
 const handleLose = () => {

@@ -6,11 +6,11 @@ class Item {
 
         const pickUp = this.pickUp.bind(this);
         this.element.addEventListener("click", function () {
+            clickCount();
             pickUp();
             itemListShown.innerHTML = "";
             printList();
             handleWin();
-            wrongItem();
         })
     }
     activate() {
@@ -33,6 +33,7 @@ const itemListShown = document.querySelector(".itemList");
 const time = document.getElementById("time");
 const youWon = document.querySelector(".youWon");
 const youLose = document.querySelector(".youLose");
+const activeItems = [];
 let score;
 let negativePoints = 0;
 let play = true;
@@ -41,7 +42,7 @@ const itemList = [new Item("glasses"), new Item("shoes"), new Item("hat"), new I
 
 let newItems = [...itemList];
 
-const activeItems = [];
+
 
 (function activeItem() {
     for (let i = 0; i <= itemList.length / 2 - 1; i++) {
@@ -57,13 +58,14 @@ const printList = () => {
     })
 };
 
-const wrongItem = () => {
+const clickCount = () => {
     if (play) {
-        if ((activeItems.indexOf(this) == -1)) {
+        if ((activeItems.indexOf(this) < 0)) {
             negativePoints -= 5;
+            console.log("click")
         }
     }
-}
+};
 
 printList();
 
@@ -72,7 +74,7 @@ const handleWin = () => {
         localStorage.setItem("myScore", score);
         youWon.style.visibility = "visible";
     }
-    document.querySelector(".score").innerText = `${score + + negativePoints + 100}`;
+    document.querySelector(".score").innerText = `${score + + negativePoints + 135}`;
 };
 
 const handleLose = () => {

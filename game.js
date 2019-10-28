@@ -29,6 +29,8 @@ class Item {
     }
 };
 
+const itemList = [new Item("glasses"), new Item("shoes"), new Item("hat"), new Item("aid-kit"), new Item("compass"), new Item("flashlight"), new Item("bagpack"), new Item("binoculars"), new Item("wallet"), new Item("map"), new Item("camera"), new Item("watch"), new Item("sunscreen"), new Item("lighter"), new Item("phone")];
+
 const itemListShown = document.querySelector(".itemList");
 const time = document.getElementById("time");
 const youWon = document.querySelector(".youWon");
@@ -37,12 +39,7 @@ const activeItems = [];
 let score;
 let negativePoints = 0;
 let play = true;
-
-const itemList = [new Item("glasses"), new Item("shoes"), new Item("hat"), new Item("aid-kit"), new Item("compass"), new Item("flashlight"), new Item("bagpack"), new Item("binoculars"), new Item("wallet"), new Item("map"), new Item("camera"), new Item("watch"), new Item("sunscreen"), new Item("lighter"), new Item("phone")]
-
 let newItems = [...itemList];
-
-
 
 (function activeItem() {
     for (let i = 0; i <= itemList.length / 2 - 1; i++) {
@@ -58,31 +55,31 @@ const printList = () => {
     })
 };
 
+printList();
+
 const clickCount = () => {
     if (play) {
         if ((activeItems.indexOf(this) < 0)) {
             negativePoints -= 5;
-            console.log("click")
         }
     }
 };
 
-printList();
 
 const handleWin = () => {
     if (activeItems.length == 0) {
-        localStorage.setItem("myScore", score);
+        localStorage.setItem("myScore", score + negativePoints + 135);
         youWon.style.visibility = "visible";
+        play = false;
     }
-    document.querySelector(".score").innerText = `${score + + negativePoints + 135}`;
+    document.querySelector(".score").innerText = `${score + negativePoints + 135}`;
 };
 
 const handleLose = () => {
     play = false;
     youLose.style.visibility = "visible";
 
-}
-
+};
 
 function gameRoomTimer(callback, value) {
     value = value || 30;
@@ -96,7 +93,8 @@ function gameRoomTimer(callback, value) {
             clearInterval(timer);
         }
     }, 1000);
-}
+};
+
 new gameRoomTimer(function (value) {
     let timerMsg = "00:" + (value >= 10 ? value : "0" + value);
     time.textContent = timerMsg;
